@@ -1,12 +1,14 @@
 'use strict';
+const memo = new Map()
+memo.set(0, 0)
+memo.set(1, 1)
 function fib(n) {
-  // フィボナッチ数列
-  // 0番目は 0 を返すルール
-  if (n === 0) return 0
-  // 1番目は 1 を返すルール
-  if (n === 1) return 1
-  // n番目の値を求める
-  return fib(n - 1) + fib(n - 2)
+  if (memo.has(n)) {
+    return memo.get(n)
+  }
+  const value = fib(n - 1) + fib(n - 2)
+  memo.set(n, value)
+  return value
 }
 
 const length = 40
